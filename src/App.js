@@ -20,7 +20,7 @@ const appRouter = createBrowserRouter([
         element: <SignInPage />,
       },
       {
-        path: "invoice",
+        path: "product",
         element: <ProductPage />,
       },
     ],

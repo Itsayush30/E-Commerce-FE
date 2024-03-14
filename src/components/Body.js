@@ -1,9 +1,10 @@
-import React from 'react'
-
+import React from "react";
+import { Outlet } from "react-router-dom";
 const Body = () => {
   return (
-    <div>Body</div>
-  )
-}
-
-export default Body
+    <div className="flex justify-center items-center h-scree bg-gray-100">
+      <Outlet />
+    </div>
+  );
+};
+export default Body;
