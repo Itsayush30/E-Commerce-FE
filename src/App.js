@@ -5,6 +5,7 @@ import SignInPage from "./components/SignInPage";
 import Registration from "./components/Registration";
 import ProductPage from "./components/ProductPage";
 import Body from "./components/Body";
+import ProductDetail from "./components/ProductDetail";
 
 const appRouter = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const appRouter = createBrowserRouter([
       {
         path: "product",
         element: <ProductPage />,
+      },
+      {
+        path: "/productdetail/:id",
+        element: <ProductDetail />,
       },
     ],
   },
