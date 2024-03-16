@@ -27,7 +27,7 @@ const AdminProductDetail = () => {
         console.log(response);
 
         const products = response.data;
-        const foundProduct = products.data[id-1];
+        const foundProduct = products.data[id - 1];
         if (foundProduct) {
           setProduct(foundProduct);
           setEditedProduct({ ...foundProduct }); // Initialize editedProduct state with product data
@@ -125,9 +125,41 @@ const AdminProductDetail = () => {
         ) : (
           <p className="text-gray-700 mb-4">{product.productDescription}</p>
         )}
-        <p className="text-gray-800 font-bold mb-2">Price: ₹{product.price}</p>
+        {isEditing ? (
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="department">
+              Department
+            </label>
+            <input
+              className="w-full p-2 border rounded-md"
+              type="text"
+              id="department"
+              name="department"
+              value={editedProduct.department}
+              onChange={handleInputChange}
+            />
+          </div>
+        ) : (
+          <p className="text-gray-800 font-bold mb-2">Department: {product.department}</p>
+        )}
+        {isEditing ? (
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="price">
+              Price
+            </label>
+            <input
+              className="w-full p-2 border rounded-md"
+              type="number"
+              id="price"
+              name="price"
+              value={editedProduct.price}
+              onChange={handleInputChange}
+            />
+          </div>
+        ) : (
+          <p className="text-gray-800 font-bold mb-2">Price: ₹{product.price}</p>
+        )}
         <img src={product.image} alt={product.productName} className="w-full rounded-lg" />
-        {/* Add more details as needed */}
       </div>
       <div className="mt-4">
         {isEditing ? (

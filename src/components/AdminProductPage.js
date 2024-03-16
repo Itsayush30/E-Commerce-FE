@@ -35,6 +35,7 @@ const AdminProductPage = () => {
               <img src={product.image} alt={product.productName} className="w-full h-64 object-cover" />
               <div className="p-6">
                 <h3 className="text-lg font-semibold mb-2">{product.productName}</h3>
+                <h4 className="text-lg font-medium mb-2">{product.department}</h4>
                 <p className="text-gray-600 text-sm mb-4">{product.productDescription}</p>
                 <p className="text-gray-800 font-bold">&#x20B9;{product.price}</p> {/* ₹ sign */}
               </div>
