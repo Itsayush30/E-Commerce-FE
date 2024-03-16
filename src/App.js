@@ -7,6 +7,7 @@ import AdminProductPage from "./components/AdminProductPage";
 import UserProductPage from "./components/UserProductPage";
 import Body from "./components/Body";
 import AdminProductDetail from "./components/AdminProductDetail";
+import UserProductDetail from "./components/UserProductDetail";
 
 const appRouter = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/userdashboard",
         element: <UserProductPage />,
+      },
+      {
+        path: "/userProduct/:id",
+        element: <UserProductDetail />,
       },
       {
         path: "/adminproduct/:id",
