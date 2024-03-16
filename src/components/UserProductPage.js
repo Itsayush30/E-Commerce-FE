@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const ProductPage = () => {
+const UserProductPage = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -40,4 +40,4 @@ const ProductPage = () => {
   );
 };
 
-export default ProductPage;
+export default UserProductPage;

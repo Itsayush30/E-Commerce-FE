@@ -3,9 +3,10 @@ import "./App.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import SignInPage from "./components/SignInPage";
 import Registration from "./components/Registration";
-import ProductPage from "./components/ProductPage";
+import AdminProductPage from "./components/AdminProductPage";
+import UserProductPage from "./components/UserProductPage";
 import Body from "./components/Body";
-import ProductDetail from "./components/ProductDetail";
+import AdminProductDetail from "./components/AdminProductDetail";
 
 const appRouter = createBrowserRouter([
   {
@@ -21,12 +22,16 @@ const appRouter = createBrowserRouter([
         element: <SignInPage />,
       },
       {
-        path: "product",
-        element: <ProductPage />,
+        path: "/admindashboard",
+        element: <AdminProductPage />,
       },
       {
-        path: "/productdetail/:id",
-        element: <ProductDetail />,
+        path: "/userdashboard",
+        element: <UserProductPage />,
+      },
+      {
+        path: "/adminproduct/:id",
+        element: <AdminProductDetail />,
       },
     ],
   },
