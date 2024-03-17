@@ -9,6 +9,7 @@ const UserProductDetail = () => {
   const [error, setError] = useState("");
   const [editedProduct, setEditedProduct] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [reviewSubmitted, setReviewSubmitted] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -60,8 +61,8 @@ const UserProductDetail = () => {
           "x-access-token": token, // Add token to request headers
         },
       };
-      const response = await axios.put(
-        `http://localhost:3344/api/v1/products/${id}`,
+      const response = await axios.post(
+        `http://localhost:3344/api/v1/review/${id}`,
         editedProduct,
         config
       );
@@ -70,6 +71,7 @@ const UserProductDetail = () => {
 
       setProduct(editedProduct); // Update product state with edited product details
       setIsEditing(false); // Exit editing mode
+      setReviewSubmitted(true); // Set review submission message
     } catch (error) {
       console.error("Error updating product:", error);
     }
@@ -177,6 +179,7 @@ const UserProductDetail = () => {
             Edit
           </button>
         )}
+        {reviewSubmitted && <p className="text-green-500">Above changes submitted for review</p>}
       </div>
     </div>
   );
