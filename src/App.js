@@ -8,6 +8,7 @@ import UserProductPage from "./components/UserProductPage";
 import Body from "./components/Body";
 import AdminProductDetail from "./components/AdminProductDetail";
 import UserProductDetail from "./components/UserProductDetail";
+import PendingReview from "./components/PendingReview";
 
 const appRouter = createBrowserRouter([
   {
@@ -38,9 +39,14 @@ const appRouter = createBrowserRouter([
         path: "/adminproduct/:id",
         element: <AdminProductDetail />,
       },
+      {
+        path: "/pendingreview",
+        element: <PendingReview />,
+      },
     ],
   },
 ]);
+
 function App() {
   return (
     <div>

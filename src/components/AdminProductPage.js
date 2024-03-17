@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 const AdminProductPage = () => {
   const [products, setProducts] = useState([]);
+  const [pendingReviewCount, setPendingReviewCount] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,10 +24,34 @@ const AdminProductPage = () => {
     fetchData();
   }, []); // Empty dependency array ensures this effect runs only once when the component mounts
 
+  useEffect(() => {
+    const fetchPendingReviewCount = async () => {
+      try {
+        const token = localStorage.getItem('token'); // Retrieve token from local storage
+        const config = {
+          headers: {
+            'x-access-token': token // Add token to request headers
+          }
+        };
+        const response = await axios.get('http://localhost:3344/api/v1/review/count', config);
+        const count = response.data.data;
+        setPendingReviewCount(count);
+      } catch (error) {
+        console.error('Error fetching pending review count:', error);
+      }
+    };
+    fetchPendingReviewCount();
+  }, []); // Empty dependency array ensures this effect runs only once when the component mounts
+
   return (
     <div className="m-4">
       <div className="text-center italic text-black-light font-cursive mb-6">
         “Design creates culture. Culture shapes values. Values determine the future“ - Robert Peters (Designer)
+      </div>
+      <div className="flex justify-end mb-4">
+        <Link to="/pendingreview" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Pending Review ({pendingReviewCount})
+        </Link>
       </div>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {products.map((product) => (
