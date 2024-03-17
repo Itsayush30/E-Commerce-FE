@@ -10,6 +10,7 @@ import AdminProductDetail from "./components/AdminProductDetail";
 import UserProductDetail from "./components/UserProductDetail";
 import PendingReview from "./components/PendingReview";
 import PendingReviewDetail from "./components/PendingReviewDetail";
+import UserProfile from "./components/UserProfile";
 
 const appRouter = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/pendingreview/:id",
         element: <PendingReviewDetail />,
+      },
+      {
+        path: "/userprofile",
+        element: <UserProfile />,
       },
     ],
   },

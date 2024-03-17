@@ -14,7 +14,7 @@ const PendingReview = () => {
             'x-access-token': token 
           }
         };
-        const response = await axios.get('http://localhost:3344/api/v1/review/all', config); 
+        const response = await axios.get('http://localhost:3344/api/v1/review/pending', config); 
         setProducts(response.data.data);
       } catch (error) {
         console.error('Error fetching products:', error);

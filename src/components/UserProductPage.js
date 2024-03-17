@@ -25,8 +25,15 @@ const UserProductPage = () => {
 
   return (
     <div className="m-4">
-      <div className="text-center italic text-black-light font-cursive mb-6">
-        “Design creates culture. Culture shapes values. Values determine the future“ - Robert Peters (Designer)
+      <div className="flex justify-between items-center mb-6">
+        <div className="text-center italic text-black-light font-cursive">
+          “Design creates culture. Culture shapes values. Values determine the future“ - Robert Peters (Designer)
+        </div>
+        <div>
+          <Link to="/userprofile" className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+            Profile
+          </Link>
+        </div>
       </div>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {products.map((product) => (

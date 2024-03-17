@@ -36,6 +36,17 @@ const PendingReviewDetail = () => {
 
   const handleApprove = async () => {
     try {
+      // Update product using PUT request
+      await axios.put(`http://localhost:3344/api/v1/products/${id}`, {
+        productName: review.productName,
+        price: review.price,
+        image: review.image,
+        productDescription: review.productDescription,
+        department: review.department,
+        // Add other fields as needed
+      });
+
+      // Approve review
       await axios.post(`http://localhost:3344/api/v1/approve/${id}`);
       setApproved(true);
       // Optionally update UI or handle success message
