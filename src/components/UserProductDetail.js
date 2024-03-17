@@ -55,6 +55,7 @@ const UserProductDetail = () => {
 
   const handleSave = async () => {
     try {
+      const {_id, ...editedProductData } = editedProduct; // Destructure id from editedProduct
       const token = localStorage.getItem("token"); // Retrieve token from local storage
       const config = {
         headers: {
@@ -63,7 +64,7 @@ const UserProductDetail = () => {
       };
       const response = await axios.post(
         `http://localhost:3344/api/v1/review/${id}`,
-        editedProduct,
+        editedProductData, // without id,ßit make multiple review for same product
         config
       );
 
