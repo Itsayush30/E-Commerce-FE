@@ -25,8 +25,6 @@ const UserProductDetail = () => {
           config
         );
 
-        console.log(response);
-
         const products = response.data;
         const foundProduct = products.data[id - 1];
         if (foundProduct) {
@@ -64,11 +62,9 @@ const UserProductDetail = () => {
       };
       const response = await axios.post(
         `http://localhost:3344/api/v1/review/${id}`,
-        editedProductData, // without id,ßit make multiple review for same product
+        editedProductData, // without id, it makes multiple reviews for the same product
         config
       );
-
-      console.log(response);
 
       setProduct(editedProduct); // Update product state with edited product details
       setIsEditing(false); // Exit editing mode

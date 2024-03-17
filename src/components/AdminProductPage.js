@@ -9,28 +9,28 @@ const AdminProductPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const token = localStorage.getItem('token'); // Retrieve token from local storage
+        const token = localStorage.getItem('token'); 
         const config = {
           headers: {
-            'x-access-token': token // Add token to request headers
+            'x-access-token': token 
           }
         };
-        const response = await axios.get('http://localhost:3344/api/v1/products', config); // Pass config with token in request
+        const response = await axios.get('http://localhost:3344/api/v1/products', config);
         setProducts(response.data.data);
       } catch (error) {
         console.error('Error fetching products:', error);
       }
     };
     fetchData();
-  }, []); // Empty dependency array ensures this effect runs only once when the component mounts
+  }, []); 
 
   useEffect(() => {
     const fetchPendingReviewCount = async () => {
       try {
-        const token = localStorage.getItem('token'); // Retrieve token from local storage
+        const token = localStorage.getItem('token');
         const config = {
           headers: {
-            'x-access-token': token // Add token to request headers
+            'x-access-token': token
           }
         };
         const response = await axios.get('http://localhost:3344/api/v1/review/count', config);
@@ -41,8 +41,7 @@ const AdminProductPage = () => {
       }
     };
     fetchPendingReviewCount();
-  }, []); // Empty dependency array ensures this effect runs only once when the component mounts
-
+  }, []); 
   return (
     <div className="m-4">
       <div className="text-center italic text-black-light font-cursive mb-6">

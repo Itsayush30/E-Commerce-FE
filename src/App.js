@@ -9,6 +9,7 @@ import Body from "./components/Body";
 import AdminProductDetail from "./components/AdminProductDetail";
 import UserProductDetail from "./components/UserProductDetail";
 import PendingReview from "./components/PendingReview";
+import PendingReviewDetail from "./components/PendingReviewDetail";
 
 const appRouter = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/pendingreview",
         element: <PendingReview />,
+      },
+      {
+        path: "/pendingreview/:id",
+        element: <PendingReviewDetail />,
       },
     ],
   },
