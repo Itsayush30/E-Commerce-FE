@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const Registration = () => {
   const navigate = useNavigate(); // useNavigate hook for navigation
@@ -66,6 +66,9 @@ const Registration = () => {
             <button type="submit" className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Register</button>
           </div>
         </form>
+        <p className="text-sm text-gray-600 text-center mt-4">
+          Already signed up? <Link to="/signin" className="text-indigo-600 hover:underline">Sign in</Link>
+        </p>
       </div>
     </div>
   );
