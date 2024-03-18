@@ -22,7 +22,7 @@ const StatusCount = () => {
         };
         
         // Fetch data from the API using Axios
-        const response = await axios.get('http://localhost:3344/api/v1/profilereview', config);
+        const response = await axios.get('http://localhost:3344/api/v1/userprofile', config);
         
         // Extract data from the response
         const data = response.data.data;
