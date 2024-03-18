@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams,Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const UserProductDetail = () => {
-  const { id } = useParams(); // Retrieve the ID parameter from the URL
+  const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -14,10 +14,10 @@ const UserProductDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const userToken = localStorage.getItem("userToken"); // Retrieve token from local storage
+        const userToken = localStorage.getItem("userToken");
         const config = {
           headers: {
-            "x-access-token": userToken, // Add token to request headers
+            "x-access-token": userToken,
           },
         };
         const response = await axios.get(
@@ -29,7 +29,7 @@ const UserProductDetail = () => {
         const foundProduct = products.data[id - 1];
         if (foundProduct) {
           setProduct(foundProduct);
-          setEditedProduct({ ...foundProduct }); // Initialize editedProduct state with product data
+          setEditedProduct({ ...foundProduct });
         } else {
           setError("Product not found");
         }
@@ -53,22 +53,22 @@ const UserProductDetail = () => {
 
   const handleSave = async () => {
     try {
-      const {_id, ...editedProductData } = editedProduct; // Destructure id from editedProduct
-      const userToken = localStorage.getItem("userToken"); // Retrieve token from local storage
+      const { _id, ...editedProductData } = editedProduct;
+      const userToken = localStorage.getItem("userToken");
       const config = {
         headers: {
-          "x-access-token": userToken, // Add token to request headers
+          "x-access-token": userToken,
         },
       };
       const response = await axios.post(
         `http://localhost:3344/api/v1/review/${id}`,
-        editedProductData, // without id, it makes multiple reviews for the same product
+        editedProductData,
         config
       );
 
-      setProduct(editedProduct); // Update product state with edited product details
-      setIsEditing(false); // Exit editing mode
-      setReviewSubmitted(true); // Set review submission message
+      setProduct(editedProduct);
+      setIsEditing(false);
+      setReviewSubmitted(true);
     } catch (error) {
       console.error("Error updating product:", error);
     }
@@ -92,7 +92,10 @@ const UserProductDetail = () => {
         <h2 className="text-2xl font-semibold mb-4">{product.productName}</h2>
         {isEditing ? (
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="productName">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="productName"
+            >
               Product Name
             </label>
             <input
@@ -109,7 +112,10 @@ const UserProductDetail = () => {
         )}
         {isEditing ? (
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="productDescription">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="productDescription"
+            >
               Product Description
             </label>
             <textarea
@@ -126,7 +132,10 @@ const UserProductDetail = () => {
         )}
         {isEditing ? (
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="department">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="department"
+            >
               Department
             </label>
             <input
@@ -139,11 +148,16 @@ const UserProductDetail = () => {
             />
           </div>
         ) : (
-          <p className="text-gray-800 font-bold mb-2">Department: {product.department}</p>
+          <p className="text-gray-800 font-bold mb-2">
+            Department: {product.department}
+          </p>
         )}
         {isEditing ? (
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="price">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="price"
+            >
               Price
             </label>
             <input
@@ -156,9 +170,15 @@ const UserProductDetail = () => {
             />
           </div>
         ) : (
-          <p className="text-gray-800 font-bold mb-2">Price: ₹{product.price}</p>
+          <p className="text-gray-800 font-bold mb-2">
+            Price: ₹{product.price}
+          </p>
         )}
-        <img src={product.image} alt={product.productName} className="w-full rounded-lg" />
+        <img
+          src={product.image}
+          alt={product.productName}
+          className="w-full rounded-lg"
+        />
       </div>
       <div className="mt-4">
         {isEditing ? (
@@ -176,10 +196,11 @@ const UserProductDetail = () => {
             Edit
           </button>
         )}
-        {reviewSubmitted && <p className="text-green-500">Above changes submitted for review</p>}
+        {reviewSubmitted && (
+          <p className="text-green-500">Above changes submitted for review</p>
+        )}
       </div>
       <div className="mt-4">
-        {/* Add button to navigate to /uploadimage */}
         <Link to="/uploadimage" className="text-blue-500 block">
           Upload image
         </Link>

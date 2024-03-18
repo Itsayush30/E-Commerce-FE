@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const AdminProductDetail = () => {
-  const { id } = useParams(); // Retrieve the ID parameter from the URL
+  const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -13,10 +13,10 @@ const AdminProductDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const adminToken = localStorage.getItem("adminToken"); // Retrieve token from local storage
+        const adminToken = localStorage.getItem("adminToken");
         const config = {
           headers: {
-            "x-access-token": adminToken, // Add token to request headers
+            "x-access-token": adminToken,
           },
         };
         const response = await axios.get(
@@ -24,13 +24,13 @@ const AdminProductDetail = () => {
           config
         );
 
-        console.log(response);
+        //console.log(response);
 
         const products = response.data;
         const foundProduct = products.data[id - 1];
         if (foundProduct) {
           setProduct(foundProduct);
-          setEditedProduct({ ...foundProduct }); // Initialize editedProduct state with product data
+          setEditedProduct({ ...foundProduct });
         } else {
           setError("Product not found");
         }
@@ -54,10 +54,10 @@ const AdminProductDetail = () => {
 
   const handleSave = async () => {
     try {
-      const adminToken = localStorage.getItem("adminToken"); // Retrieve token from local storage
+      const adminToken = localStorage.getItem("adminToken");
       const config = {
         headers: {
-          "x-access-token": adminToken, // Add token to request headers
+          "x-access-token": adminToken,
         },
       };
       const response = await axios.put(
@@ -66,10 +66,10 @@ const AdminProductDetail = () => {
         config
       );
 
-      console.log(response);
+      //console.log(response);
 
-      setProduct(editedProduct); // Update product state with edited product details
-      setIsEditing(false); // Exit editing mode
+      setProduct(editedProduct);
+      setIsEditing(false);
     } catch (error) {
       console.error("Error updating product:", error);
     }
@@ -93,7 +93,10 @@ const AdminProductDetail = () => {
         <h2 className="text-2xl font-semibold mb-4">{product.productName}</h2>
         {isEditing ? (
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="productName">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="productName"
+            >
               Product Name
             </label>
             <input
@@ -110,7 +113,10 @@ const AdminProductDetail = () => {
         )}
         {isEditing ? (
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="productDescription">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="productDescription"
+            >
               Product Description
             </label>
             <textarea
@@ -127,7 +133,10 @@ const AdminProductDetail = () => {
         )}
         {isEditing ? (
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="department">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="department"
+            >
               Department
             </label>
             <input
@@ -140,11 +149,16 @@ const AdminProductDetail = () => {
             />
           </div>
         ) : (
-          <p className="text-gray-800 font-bold mb-2">Department: {product.department}</p>
+          <p className="text-gray-800 font-bold mb-2">
+            Department: {product.department}
+          </p>
         )}
         {isEditing ? (
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="price">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="price"
+            >
               Price
             </label>
             <input
@@ -157,9 +171,15 @@ const AdminProductDetail = () => {
             />
           </div>
         ) : (
-          <p className="text-gray-800 font-bold mb-2">Price: ₹{product.price}</p>
+          <p className="text-gray-800 font-bold mb-2">
+            Price: ₹{product.price}
+          </p>
         )}
-        <img src={product.image} alt={product.productName} className="w-full rounded-lg" />
+        <img
+          src={product.image}
+          alt={product.productName}
+          className="w-full rounded-lg"
+        />
       </div>
       <div className="mt-4">
         {isEditing ? (

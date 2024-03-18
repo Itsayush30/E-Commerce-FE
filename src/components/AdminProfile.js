@@ -51,7 +51,7 @@ const StatusCount = () => {
     };
 
     fetchData();
-  }, []); // Empty dependency array to run only once when component mounts
+  }, []);
 
   return (
     <div className="bg-gray-100 p-4 rounded-md shadow-md">

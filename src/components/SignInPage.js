@@ -9,7 +9,7 @@ const SignInPage = () => {
     password: "",
   });
   const [error, setError] = useState("");
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -99,10 +99,10 @@ const SignInPage = () => {
                 htmlFor="user"
                 className="ml-2 block text-sm text-gray-900"
               >
-                User
+                Team Member
               </label>
             </div>
-            <div className="flex items-center">
+            <div className="ml-3 flex items-center">
               <input
                 id="admin"
                 name="role"
