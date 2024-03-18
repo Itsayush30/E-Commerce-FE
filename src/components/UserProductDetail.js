@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams,Link } from "react-router-dom";
 
 const UserProductDetail = () => {
   const { id } = useParams(); // Retrieve the ID parameter from the URL
@@ -177,6 +177,12 @@ const UserProductDetail = () => {
           </button>
         )}
         {reviewSubmitted && <p className="text-green-500">Above changes submitted for review</p>}
+      </div>
+      <div className="mt-4">
+        {/* Add button to navigate to /uploadimage */}
+        <Link to="/uploadimage" className="text-blue-500 block">
+          Upload image
+        </Link>
       </div>
     </div>
   );

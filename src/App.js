@@ -12,6 +12,7 @@ import PendingReview from "./components/PendingReview";
 import PendingReviewDetail from "./components/PendingReviewDetail";
 import UserProfile from "./components/UserProfile";
 import AdminProfile from "./components/AdminProfile";
+import ImageUpload from "./components/EditImageUser";
 
 const appRouter = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/adminprofile",
         element: <AdminProfile />,
+      },
+      {
+        path: "/uploadimage",
+        element: <ImageUpload />,
       },
     ],
   },
