@@ -3,9 +3,18 @@ import axios from 'axios';
 
 const ImageUploader = () => {
   const [file, setFile] = useState(null);
+  const [previewURL, setPreviewURL] = useState(null);
 
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+
+    // Preview the selected image
+    const reader = new FileReader();
+    reader.onload = () => {
+      setPreviewURL(reader.result);
+    };
+    reader.readAsDataURL(selectedFile);
   };
 
   const handleUpload = async () => {
@@ -42,6 +51,11 @@ const ImageUploader = () => {
         onChange={handleFileChange}
         className="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
       />
+      {previewURL && (
+        <div className="mt-4">
+          <img src={previewURL} alt="Selected" className="max-w-full h-auto" />
+        </div>
+      )}
       <button
         onClick={handleUpload}
         className="mt-4 inline-block bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 focus:outline-none focus:border-indigo-700 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
