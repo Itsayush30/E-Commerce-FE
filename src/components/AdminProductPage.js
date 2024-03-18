@@ -9,10 +9,10 @@ const AdminProductPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const token = localStorage.getItem('token'); 
+        const adminToken = localStorage.getItem('adminToken'); 
         const config = {
           headers: {
-            'x-access-token': token 
+            'x-access-token': adminToken 
           }
         };
         const response = await axios.get('http://localhost:3344/api/v1/products', config);
@@ -27,10 +27,10 @@ const AdminProductPage = () => {
   useEffect(() => {
     const fetchPendingReviewCount = async () => {
       try {
-        const token = localStorage.getItem('token');
+        const adminToken = localStorage.getItem('adminToken');
         const config = {
           headers: {
-            'x-access-token': token
+            'x-access-token': adminToken
           }
         };
         const response = await axios.get('http://localhost:3344/api/v1/review/count', config);
@@ -42,17 +42,23 @@ const AdminProductPage = () => {
     };
     fetchPendingReviewCount();
   }, []); 
+
   return (
     <div className="m-4">
-      <div className="text-center italic text-black-light font-cursive mb-6">
-        “Design creates culture. Culture shapes values. Values determine the future“ - Robert Peters (Designer)
+      <div className="top-0 w-full p-4 flex justify-between items-center z-10">
+        <h2 className="text-center italic text-black-light font-cursive">
+          “Design creates culture. Culture shapes values. Values determine the future“ - Robert Peters (Designer)
+        </h2>
+        <div>
+          <Link to="/pendingreview" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4">
+            Pending Review ({pendingReviewCount})
+          </Link>
+          <Link to="/adminprofile" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Admin Profile
+          </Link>
+        </div>
       </div>
-      <div className="flex justify-end mb-4">
-        <Link to="/pendingreview" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Pending Review ({pendingReviewCount})
-        </Link>
-      </div>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="mt-2 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {products.map((product) => (
           <Link key={product.id} to={`/adminproduct/${product.id}`}>
             <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg cursor-pointer">

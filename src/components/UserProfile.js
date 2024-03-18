@@ -12,12 +12,12 @@ const StatusCount = () => {
     const fetchData = async () => {
       try {
         // Retrieve token from local storage
-        const token = localStorage.getItem('token');
+        const userToken = localStorage.getItem('userToken');
         
         // Set request headers with the token for authentication
         const config = {
           headers: {
-            'x-access-token': token
+            'x-access-token': userToken
           }
         };
         
@@ -47,7 +47,7 @@ const StatusCount = () => {
 
   return (
     <div className="bg-gray-100 p-4 rounded-md shadow-md">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-4">Status Counts</h2>
+      <h2 className="text-2xl font-semibold text-gray-800 mb-4">Your Status Counts of Reviews submitted</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-blue-200 p-4 rounded-md shadow-md">
           <p className="text-lg font-semibold text-blue-800 mb-2">Pending</p>

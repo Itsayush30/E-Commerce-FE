@@ -26,7 +26,13 @@ const PendingReviewDetail = () => {
 
   const handleReject = async () => {
     try {
-      await axios.post(`http://localhost:3344/api/v1/reject/${id}`);
+      const adminToken = window.localStorage.getItem('adminToken');
+      const config = {
+        headers: {
+          'x-access-token': adminToken
+        }
+      };
+      await axios.post(`http://localhost:3344/api/v1/reject/${id}`, {}, config);
       setRejected(true);
       // Optionally update UI or handle success message
     } catch (error) {
@@ -36,6 +42,12 @@ const PendingReviewDetail = () => {
 
   const handleApprove = async () => {
     try {
+      const adminToken = window.localStorage.getItem('adminToken');
+      const config = {
+        headers: {
+          'x-access-token': adminToken
+        }
+      };
       // Update product using PUT request
       await axios.put(`http://localhost:3344/api/v1/products/${id}`, {
         productName: review.productName,
@@ -44,10 +56,10 @@ const PendingReviewDetail = () => {
         productDescription: review.productDescription,
         department: review.department,
         // Add other fields as needed
-      });
+      }, config);
 
       // Approve review
-      await axios.post(`http://localhost:3344/api/v1/approve/${id}`);
+      await axios.post(`http://localhost:3344/api/v1/approve/${id}`, {}, config);
       setApproved(true);
       // Optionally update UI or handle success message
     } catch (error) {

@@ -13,10 +13,10 @@ const AdminProductDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const token = localStorage.getItem("token"); // Retrieve token from local storage
+        const adminToken = localStorage.getItem("adminToken"); // Retrieve token from local storage
         const config = {
           headers: {
-            "x-access-token": token, // Add token to request headers
+            "x-access-token": adminToken, // Add token to request headers
           },
         };
         const response = await axios.get(
@@ -54,10 +54,10 @@ const AdminProductDetail = () => {
 
   const handleSave = async () => {
     try {
-      const token = localStorage.getItem("token"); // Retrieve token from local storage
+      const adminToken = localStorage.getItem("adminToken"); // Retrieve token from local storage
       const config = {
         headers: {
-          "x-access-token": token, // Add token to request headers
+          "x-access-token": adminToken, // Add token to request headers
         },
       };
       const response = await axios.put(

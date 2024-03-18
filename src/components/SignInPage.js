@@ -9,7 +9,7 @@ const SignInPage = () => {
     password: "",
   });
   const [error, setError] = useState("");
-  const navigate = useNavigate(); // Use the useNavigate hook to get the navigate function
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,11 +24,9 @@ const SignInPage = () => {
     try {
       const response = await axios.post(url, formData);
       if (response.data.success) {
-        // Store the token in local storage
-        localStorage.setItem("token", response.data.data);
-        // Reset form fields upon successful signin
+        const tokenKey = role === "user" ? "userToken" : "adminToken";
+        localStorage.setItem(tokenKey, response.data.data);
         setFormData({ email: "", password: "" });
-        // Navigate to different routes based on the selected role
         if (role === "user") {
           navigate("/userdashboard");
         } else if (role === "admin") {
@@ -39,7 +37,7 @@ const SignInPage = () => {
       }
     } catch (error) {
       console.error("Error signing in:", error);
-      setError("Sign in failed. Please check your credentials."); // Set error message
+      setError("Sign in failed. Please check your credentials.");
     }
   };
 
@@ -122,8 +120,7 @@ const SignInPage = () => {
               </label>
             </div>
           </div>
-          {error && <div className="text-red-500 text-sm mt-1">{error}</div>}{" "}
-          {/* Display error message */}
+          {error && <div className="text-red-500 text-sm mt-1">{error}</div>}
           <div>
             <button
               type="submit"

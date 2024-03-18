@@ -8,10 +8,10 @@ const UserProductPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const token = localStorage.getItem('token'); // Retrieve token from local storage
+        const userToken = localStorage.getItem('userToken'); // Retrieve token from local storage
         const config = {
           headers: {
-            'x-access-token': token // Add token to request headers
+            'x-access-token': userToken // Add token to request headers
           }
         };
         const response = await axios.get('http://localhost:3344/api/v1/products', config); // Pass config with token in request
@@ -31,7 +31,7 @@ const UserProductPage = () => {
         </div>
         <div>
           <Link to="/userprofile" className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
-            Profile
+            User Profile
           </Link>
         </div>
       </div>

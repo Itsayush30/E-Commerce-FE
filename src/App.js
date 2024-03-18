@@ -11,6 +11,7 @@ import UserProductDetail from "./components/UserProductDetail";
 import PendingReview from "./components/PendingReview";
 import PendingReviewDetail from "./components/PendingReviewDetail";
 import UserProfile from "./components/UserProfile";
+import AdminProfile from "./components/AdminProfile";
 
 const appRouter = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/userprofile",
         element: <UserProfile />,
+      },
+      {
+        path: "/adminprofile",
+        element: <AdminProfile />,
       },
     ],
   },

@@ -8,10 +8,10 @@ const PendingReview = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const token = localStorage.getItem('token');
+        const adminToken = localStorage.getItem('adminToken');
         const config = {
           headers: {
-            'x-access-token': token 
+            'x-access-token': adminToken 
           }
         };
         const response = await axios.get('http://localhost:3344/api/v1/review/pending', config); 
